@@ -1,0 +1,8 @@
+#忽略的文件
+node_modules/
+dist/
+#忽略隐藏文件
+.*
+#不忽略的文件
+!.gitignore
+!.babelrc
