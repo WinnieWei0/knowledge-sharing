@@ -43,7 +43,7 @@ module.exports = {
 
       // 添加静态资源模块的打包处理
       {
-        test: /\.(gif|png|jpg|jpeg|svg)$/,  // 字体图标, 媒体文件都可以配置
+        test: /\.(gif|png|jpg|jpeg|svg|woff|ttf)$/,  // 字体图标, 媒体文件都可以配置
         // use: [ 'url-loader' ]
         use: [
           {
