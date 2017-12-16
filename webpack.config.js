@@ -17,7 +17,7 @@ module.exports = {
 
     // html处理
     new htmlWP({
-      template: path.resolve(__dirname, '.2/src/index.html'),
+      template: path.resolve(__dirname, './src/index.html'),
       filename: 'index.html'
     })
 
