@@ -41,11 +41,22 @@ export default {
     };
   },
   methods: {
+    login(){
+      this.$axios.post(this.$api.login,this.user)
+          .then((res)=>{
+            console.log(res);
+            if(!res.data.status){
+              localStorage.setItem('user',JSON.stringify(res.data.message));
+            this.$router.push('/');  //跳转
+            }else{
+              alert('账号或密码错误')
+            }
+          });
+    },
     submitForm(formName) {
       this.$refs[formName].validate(valid => {
         if (valid) {
-          this.$axios.post(this.$api.login,this.user)
-          .then(()=>location.href='/');
+          this.login();
         } else {
           console.log("error submit!!");
           return false;
