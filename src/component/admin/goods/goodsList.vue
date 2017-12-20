@@ -7,7 +7,7 @@
 </el-breadcrumb>
 <div class="tools">
 <div class="btn">
-  <el-button size="small" icon="el-icon-plus">添加</el-button>
+  <el-button size="small" icon="el-icon-plus" @click="getToPage('add')">添加</el-button>
   <el-button size="small" icon="el-icon-check">全选</el-button>
   <el-button size="small" icon="el-icon-delete">删除</el-button>
 </div>
@@ -44,7 +44,8 @@ height="400"
     </el-table-column>
     <el-table-column prop="name" label="操作" width="100">
       <template slot-scope="scope">
-        <a href="#">删除</a>
+        <!-- <a href="goods/edit/:id" prop='id'>删除</a> -->
+        <router-link :to="{name:'ge',params:{id:scope.row.id}}">编辑</router-link>
       </template>
     </el-table-column>
   </el-table>
@@ -75,18 +76,21 @@ export default {
   methods:{
     getDataList(){
       this.$axios.get(this.$api.gsList,{params:this.query}).then((res)=>{
-        console.log(res)
+        // console.log(res)
         this.dataList=res.data.message;
         this.totalCount=res.data.totalcount;
       });
     },
     changePageSize(pageSize){
-this.query.pageSize=pageSize;
-this.getDataList();
+      this.query.pageSize=pageSize;
+      this.getDataList();
     },
     changeCurrentPage(pageIndex){
       this.query.pageIndex=pageIndex;
-this.getDataList();
+      this.getDataList();
+    },
+    getToPage(page){
+      this.$router.push(page);
     }
   },
   created(){

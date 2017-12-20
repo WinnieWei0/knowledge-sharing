@@ -16,13 +16,16 @@
   export default {
     data() {
       return {
-        user: JSON.parse(localStorage.getItem('user'))
+        user: JSON.parse(localStorage.getItem('user'))||{}
       }
     },
      methods: {
        logout(){
-         localStorage.clear();
-         this.$router.push('/login');
+         this.$axios.get(this.$api.logout).then(res=>{
+           localStorage.removeItem('user');
+         }).then(res=>{
+           this.$router.push('/login');
+         });
        },
       handleCommand(command) {
         switch(command){

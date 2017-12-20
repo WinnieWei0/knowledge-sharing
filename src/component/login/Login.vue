@@ -40,6 +40,9 @@ export default {
       }
     };
   },
+  created(){
+    console.log('loginnnnnn');
+  },
   methods: {
     login(){
       this.$axios.post(this.$api.login,this.user)
